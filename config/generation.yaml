@@ -1,0 +1,75 @@
+# Video Generation Configuration
+
+# Default generation settings
+generation:
+  # Keyframe settings
+  num_keyframes: 5
+  keyframe_inference_steps: 30
+  keyframe_guidance_scale: 7.5
+
+  # Video interpolation
+  fps: 30
+  interpolation_inference_steps: 25
+  motion_bucket_id: 127 # 0-255, higher = more motion
+  noise_aug_strength: 0.02 # 0.0-1.0
+
+  # Resolution presets
+  resolutions:
+    720p: [1280, 720]
+    1080p: [1920, 1080]
+    4k: [3840, 2160]
+
+  default_resolution: "1080p"
+
+  # Duration limits
+  min_duration: 1
+  max_duration: 60
+  default_duration: 10
+
+# Post-processing settings
+post_processing:
+  # Upscaling
+  upscale: true
+  upscale_method: "lanczos" # lanczos, bicubic, realesrgan
+
+  # Color grading
+  color_grading: true
+  contrast_enhancement: 1.15
+  saturation_enhancement: 1.1
+  brightness_adjustment: 1.05
+
+  # Sharpening
+  sharpening: true
+  sharpening_strength: 0.5 # 0.0-1.0
+
+  # Stabilization (computationally expensive)
+  stabilization: false
+
+  # Cinematic bars
+  cinematic_bars: false
+  aspect_ratio: "2.39:1" # 2.39:1, 21:9, 16:9
+
+# Output settings
+output:
+  directory: "./outputs"
+  format: "mp4"
+  codec: "libx264"
+  crf: 18 # 0-51, lower = better quality (18 is visually lossless)
+  preset: "slow" # ultrafast, fast, medium, slow, veryslow
+
+  # Naming
+  filename_template: "video_{prompt}_{timestamp}"
+  max_filename_length: 50
+
+# Performance settings
+performance:
+  # Batch processing
+  batch_size: "auto" # "auto" or integer
+
+  # Memory management
+  clear_cache_between_frames: true
+  max_memory_usage_gb: null # null = auto, or specify limit
+
+  # Progress reporting
+  log_level: "INFO" # DEBUG, INFO, WARNING, ERROR
+  progress_bar: true

@@ -1,0 +1,36 @@
+# Model Configuration
+
+models:
+  # Stable Diffusion XL for keyframe generation
+  sdxl:
+    repo_id: "stabilityai/stable-diffusion-xl-base-1.0"
+    variant: "fp16" # Use fp16 for CUDA, fp32 for CPU
+    enabled: true
+
+  # Stable Video Diffusion for interpolation
+  svd:
+    repo_id: "stabilityai/stable-video-diffusion-img2vid-xt"
+    variant: "fp16"
+    enabled: true
+
+  # AnimateDiff (optional, more complex setup)
+  animatediff:
+    repo_id: "guoyww/animatediff-motion-adapter-v1-5-2"
+    enabled: false
+
+  # ControlNet (optional, for better control)
+  controlnet:
+    repo_id: "lllyasviel/control_v11p_sd15_canny"
+    enabled: false
+
+# Memory optimization
+optimization:
+  enable_attention_slicing: true
+  enable_vae_slicing: true
+  enable_xformers: false # Set to true if xformers is installed
+  cpu_offload: false # Offload models to CPU when not in use
+
+# Cache settings
+cache:
+  directory: "./models"
+  auto_clear: false
